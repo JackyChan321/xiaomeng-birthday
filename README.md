@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -851,7 +852,7 @@
             <!-- Video player section -->
             <div class="music-theme-section">
                 <div class="music-notes" id="musicNotes"></div>
-                <h2>🎬 我们的专属视频 🎬</h2>
+                <h2>🎬 我们的专属MV主题曲 🎬</h2>
                 <p class="music-info">《呆萌机》- 只想和你一起走过每一天</p>
                 
                 <!-- Video container -->
@@ -1345,5 +1346,4 @@
         });
     </script>
 </body>
-
 </html>
