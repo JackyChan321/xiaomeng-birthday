@@ -1,7 +1,6 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <!-- Enhanced mobile viewport (critical for mobile) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>小萌生日快乐！王浩静，我爱你 💕</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
