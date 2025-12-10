@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Enhanced mobile viewport (critical for mobile) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>小萌生日快乐！王浩静，我爱你 💕</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,8 +19,9 @@
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 30%, #2d1b69 70%, #000428 100%);
             color: #e0e0ff;
             min-height: 100vh;
-            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text x='0' y='20' font-size='24' fill='%23ff69b4'>💖</text></svg>"), auto;
-            padding-bottom: 120px; /* Reserve space for footer */
+            /* Remove custom cursor on mobile (useless for touch) */
+            cursor: auto;
+            padding-bottom: 80px; /* Reduced for mobile */
         }
         /* Starry sky background */
         body::before {
@@ -59,9 +61,9 @@
             50% { opacity: 1; transform: scale(1.5); }
         }
         .container {
-            max-width: 1200px;
+            max-width: 100%; /* Full width on mobile */
             margin: 0 auto;
-            padding: 20px;
+            padding: 15px; /* Reduced padding for mobile */
             position: relative;
             z-index: 1;
         }
@@ -78,8 +80,8 @@
         .heart {
             position: absolute;
             color: #ff69b4;
-            font-size: 24px;
-            text-shadow: 0 0 10px #ff1493;
+            font-size: 18px; /* Smaller for mobile */
+            text-shadow: 0 0 8px #ff1493;
             animation: float 8s infinite linear;
         }
         @keyframes float {
@@ -93,9 +95,11 @@
             background: linear-gradient(45deg, #ff9ff3, #ff6b9d);
             border-radius: 50% 0 50% 0;
             opacity: 0.8;
-            box-shadow: 0 0 8px rgba(255, 159, 243, 0.6);
+            box-shadow: 0 0 6px rgba(255, 159, 243, 0.6);
             animation: petalFloat 10s infinite linear;
             z-index: 0;
+            width: 12px; /* Smaller for mobile */
+            height: 12px;
         }
         @keyframes petalFloat {
             0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0; }
@@ -103,89 +107,83 @@
             90% { opacity: 0.7; }
             100% { transform: translateY(-50px) rotate(720deg) scale(0.5); opacity: 0; }
         }
-        /* Mouse-following heart */
+        /* Mouse-following heart (hidden on mobile - touch doesn't need it) */
         .follow-heart {
-            position: absolute;
-            pointer-events: none;
-            z-index: 9999;
-            font-size: 20px;
-            color: #ff1493;
-            text-shadow: 0 0 15px rgba(255, 20, 147, 0.8);
-            transform: translate(-50%, -50%);
-            animation: followFade 1s forwards;
+            display: none;
         }
         @keyframes followFade {
             0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
             100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
         }
-        /* Hero section */
+        /* Hero section - Mobile optimized */
         .hero {
             text-align: center;
-            padding: 120px 0;
+            padding: 60px 0 40px; /* Reduced padding */
             animation: fadeInUp 2.5s ease-out;
         }
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .hero h1 {
-            font-size: 4.5em;
+            font-size: 2.2em; /* Mobile-friendly size */
             background: linear-gradient(45deg, #ff6b9d, #ff1493, #ff9ff3, #c44569);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 20px;
-            text-shadow: 0 0 30px rgba(255, 105, 180, 0.8), 0 0 60px rgba(255, 20, 147, 0.5);
-            filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6));
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+            line-height: 1.3; /* Better line height for mobile */
         }
         .hero p {
-            font-size: 1.6em;
-            margin-bottom: 30px;
+            font-size: 1.1em; /* Smaller for mobile */
+            margin-bottom: 20px;
             opacity: 0.95;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            text-shadow: 0 0 8px rgba(255,255,255,0.5);
+            padding: 0 10px;
         }
         .cake {
-            font-size: 6em;
+            font-size: 3em; /* Smaller for mobile */
             animation: bounce 2s infinite, breath 3s infinite alternate;
-            margin: 30px 0;
-            text-shadow: 0 0 20px #ff69b4;
-            filter: drop-shadow(0 0 15px rgba(255,105,180,0.7));
+            margin: 20px 0;
+            text-shadow: 0 0 15px #ff69b4;
         }
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0) scale(1); }
-            40% { transform: translateY(-25px) scale(1.05); }
-            60% { transform: translateY(-12px) scale(1.02); }
+            40% { transform: translateY(-15px) scale(1.05); }
+            60% { transform: translateY(-8px) scale(1.02); }
         }
         @keyframes breath {
-            0% { filter: drop-shadow(0 0 15px rgba(255,105,180,0.7)); }
-            100% { filter: drop-shadow(0 0 30px rgba(255,105,180,1)); }
+            0% { filter: drop-shadow(0 0 10px rgba(255,105,180,0.7)); }
+            100% { filter: drop-shadow(0 0 20px rgba(255,105,180,1)); }
         }
         /* Highlighted memorial date */
         .memorial-date {
             display: inline-block;
             background: linear-gradient(45deg, #ff1493, #ff69b4);
-            padding: 8px 20px;
+            padding: 6px 15px; /* Smaller padding */
             border-radius: 50px;
-            margin: 10px;
+            margin: 8px;
             font-weight: 700;
-            box-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
+            font-size: 0.9em; /* Smaller text */
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.6);
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 20, 147, 0.6); }
-            50% { transform: scale(1.08); box-shadow: 0 0 30px rgba(255, 20, 147, 0.8); }
-            100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 20, 147, 0.6); }
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 20, 147, 0.6); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 20, 147, 0.8); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 20, 147, 0.6); }
         }
-        /* Love story section */
+        /* Love story section - Mobile optimized */
         .story {
-            padding: 100px 0;
+            padding: 40px 15px; /* Reduced padding */
             text-align: center;
             background: rgba(42, 27, 105, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            margin: 60px 0;
+            backdrop-filter: blur(15px);
+            border-radius: 20px; /* More rounded for mobile */
+            margin: 30px 0;
             border: 1px solid rgba(255, 105, 180, 0.3);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             animation: storyFade 3s ease-out;
         }
         @keyframes storyFade {
@@ -193,186 +191,185 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .story h2 {
-            font-size: 3em;
-            margin-bottom: 40px;
+            font-size: 1.8em; /* Mobile size */
+            margin-bottom: 25px;
             background: linear-gradient(45deg, #ff9ff3, #ff6b9d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 159, 243, 0.6);
+            text-shadow: 0 0 15px rgba(255, 159, 243, 0.6);
         }
         .story p {
-            font-size: 1.3em;
-            line-height: 1.9;
-            max-width: 900px;
-            margin: 0 auto 25px;
+            font-size: 1em; /* Mobile size */
+            line-height: 1.8;
+            max-width: 100%; /* Full width on mobile */
+            margin: 0 auto 20px;
             opacity: 0.98;
             text-shadow: 0 0 5px rgba(255,255,255,0.3);
+            padding: 0 10px;
         }
 
-        /* ===== Photo carousel styles ===== */
+        /* ===== Photo carousel - FULLY MOBILE OPTIMIZED ===== */
         .photo-frame-section {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
         }
         .photo-frame-section h2 {
-            font-size: 2.5em;
+            font-size: 1.8em; /* Mobile size */
             background: linear-gradient(45deg, #ff9ff3, #ff69b4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 40px;
-            text-shadow: 0 0 20px rgba(255, 159, 243, 0.6);
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(255, 159, 243, 0.6);
         }
-        /* Carousel container styles (no scrollbars) */
+        /* Carousel container - Touch-friendly */
         .carousel-container {
             position: relative;
             width: 100%;
-            max-width: 600px;
+            max-width: 100%; /* Full width on mobile */
             margin: 0 auto;
-            border-radius: 25px;
+            border-radius: 15px; /* More rounded */
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4), 0 0 80px rgba(255, 105, 180, 0.15);
-            border: 10px solid;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            border: 6px solid; /* Thinner border for mobile */
             border-image: linear-gradient(45deg, #ff69b4, #9370db, #ff69b4) 1;
-            /* Ensure no scrollbars */
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE/Edge */
+            /* Prevent touch scrolling issues */
+            touch-action: pan-y;
         }
-        /* Hide scrollbar for Chrome/Safari */
-        .carousel-container::-webkit-scrollbar {
-            display: none;
-        }
-        /* Carousel content wrapper (no scroll) */
+        /* Carousel wrapper - Responsive height (16:9 ratio for mobile) */
         .carousel-wrapper {
             width: 100%;
-            height: 750px;
-            overflow: hidden !important; /* Force no scroll */
+            aspect-ratio: 3/4; /* Portrait ratio for mobile photos */
+            overflow: hidden !important;
             position: relative;
         }
         .carousel-slide {
             width: 100%;
             height: 100%;
-            transition: all 0.5s ease;
+            transition: transform 0.3s ease; /* Faster transition for mobile */
             position: absolute;
             top: 0;
             left: 0;
         }
-        /* Carousel photo styles */
+        /* Carousel photo */
         .carousel-photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s ease;
+            transition: transform 0.5s ease;
         }
         .carousel-container:hover .carousel-photo {
-            transform: scale(1.03);
+            transform: scale(1.02); /* Subtle zoom for mobile */
         }
-        /* Carousel button styles */
+        /* Carousel buttons - Larger touch targets */
         .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
+            width: 50px; /* Larger touch area */
+            height: 50px;
             border-radius: 50%;
             background: linear-gradient(45deg, #ff69b4, #ff1493);
             border: none;
             color: white;
-            font-size: 1.5em;
+            font-size: 1.2em;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 10;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.5);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 105, 180, 0.5);
+            /* Larger touch target (invisible padding) */
+            padding: 10px;
+            margin: 0 5px;
         }
         .carousel-btn:hover {
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.7);
-            background: linear-gradient(45deg, #ff1493, #c71585);
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 6px 15px rgba(255, 105, 180, 0.7);
         }
         .prev-btn {
-            left: 20px;
+            left: 5px;
         }
         .next-btn {
-            right: 20px;
+            right: 5px;
         }
-        /* Carousel indicators (dots OUTSIDE frame - key modification) */
+        /* Carousel indicators - Mobile-friendly */
         .carousel-indicators {
-            /* Changed from absolute to relative positioning */
             position: relative;
             display: flex;
-            gap: 10px;
-            margin: 20px auto 0; /* Margin below the frame */
+            gap: 8px;
+            margin: 15px auto 0;
             justify-content: center;
             width: fit-content;
             background: rgba(0,0,0,0.2);
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 20px;
-            z-index: 20; /* Ensure dots are above all content */
+            z-index: 20;
         }
         .indicator-dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: all 0.3s ease;
+            /* Larger touch area */
+            padding: 4px;
         }
         .indicator-dot.active {
             background: #ff69b4;
-            transform: scale(1.3);
-            box-shadow: 0 0 10px #ff69b4;
+            transform: scale(1.2);
+            box-shadow: 0 0 8px #ff69b4;
         }
-        /* Carousel caption */
+        /* Carousel caption - Mobile optimized */
         .carousel-caption {
             position: absolute;
-            bottom: 20px; /* Adjusted position (no overlap with dots now) */
+            bottom: 15px;
             left: 0;
             width: 100%;
-            padding: 15px 20px;
+            padding: 10px 15px;
             background: linear-gradient(transparent, rgba(0,0,0,0.7));
             color: #ffd1dc;
-            font-size: 1.3em;
+            font-size: 1em;
             text-align: center;
-            text-shadow: 0 0 15px #ff1493;
+            text-shadow: 0 0 10px #ff1493;
             z-index: 15;
         }
 
-        /* ===== Video player styles ===== */
+        /* ===== Video player - Mobile optimized ===== */
         .music-theme-section {
             text-align: center;
             position: relative;
-            padding: 40px 20px;
+            padding: 25px 15px;
             background: rgba(255, 105, 180, 0.1);
-            border-radius: 20px;
+            border-radius: 15px;
             border: 1px solid rgba(255, 105, 180, 0.2);
+            margin: 30px 0;
         }
         .music-theme-section h2 {
-            font-size: 2.5em;
+            font-size: 1.8em;
             background: linear-gradient(45deg, #ff69b4, #ff9ff3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         .music-info {
-            font-size: 1.3em;
-            margin-bottom: 25px;
+            font-size: 1em;
+            margin-bottom: 20px;
             color: #ffd1dc;
-            text-shadow: 0 0 10px rgba(255, 159, 243, 0.7);
+            text-shadow: 0 0 8px rgba(255, 159, 243, 0.7);
+            padding: 0 10px;
         }
-        /* Video container styles */
+        /* Video container - Full width on mobile */
         .video-container {
             position: relative;
-            width: 80%;
-            max-width: 1000px;
-            margin: 0 auto 20px;
-            border-radius: 20px;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto 15px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
             border: 2px solid #ff69b4;
         }
-        /* Video styles */
         #themeVideo {
             width: 100%;
             height: auto;
@@ -380,7 +377,7 @@
             background: rgba(0, 0, 0, 0.8);
             display: block;
         }
-        /* Video cover overlay (shown before play) */
+        /* Video cover overlay - Mobile friendly */
         .video-cover-overlay {
             position: absolute;
             top: 0;
@@ -396,19 +393,18 @@
             transition: all 0.3s ease;
         }
         .video-cover-overlay.hidden {
-            display: none; /* Hide cover when playing */
+            display: none;
         }
         .video-cover-overlay i {
-            font-size: 6em;
+            font-size: 4em; /* Smaller for mobile */
             color: #ff69b4;
-            text-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
             transition: transform 0.3s ease;
         }
         .video-cover-overlay:hover i {
-            transform: scale(1.1);
-            text-shadow: 0 0 40px rgba(255, 105, 180, 1);
+            transform: scale(1.05);
         }
-        /* Animated music notes effect */
+        /* Music notes - Smaller for mobile */
         .music-notes {
             position: absolute;
             top: 0;
@@ -420,9 +416,9 @@
         }
         .note {
             position: absolute;
-            font-size: 24px;
+            font-size: 18px;
             color: #ff69b4;
-            text-shadow: 0 0 15px #ff1493;
+            text-shadow: 0 0 10px #ff1493;
             animation: noteFloat 6s infinite ease-in-out;
             opacity: 0;
         }
@@ -445,43 +441,46 @@
 
         /* ===== Photo + Video container ===== */
         .photo-music-section {
-            margin: 80px 0;
-            padding: 60px 20px;
+            margin: 40px 0;
+            padding: 30px 15px;
             background: rgba(35, 18, 82, 0.7);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
             border: 1px solid rgba(255, 105, 180, 0.4);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
 
-        /* Eternal promise section */
+        /* Eternal promise section - Mobile optimized */
         .promise {
-            padding: 100px 0;
+            padding: 40px 15px;
             text-align: center;
         }
         .promise h2 {
-            font-size: 3em;
-            margin-bottom: 40px;
+            font-size: 1.8em;
+            margin-bottom: 25px;
             background: linear-gradient(45deg, #ff9ff3, #ff6b9d, #c44569);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(255, 159, 243, 0.8);
+            text-shadow: 0 0 20px rgba(255, 159, 243, 0.8);
         }
+        /* Love button - Larger touch target */
         .love-btn {
             background: linear-gradient(45deg, #ff1493, #c71585, #ff69b4);
             border: none;
             color: white;
-            padding: 25px 50px;
-            font-size: 1.6em;
+            padding: 18px 35px; /* Larger touch area */
+            font-size: 1.2em;
             border-radius: 60px;
             cursor: pointer;
             transition: all 0.4s ease;
-            box-shadow: 0 15px 35px rgba(255, 20, 147, 0.5), 0 0 0 1px rgba(255, 105, 180, 0.3);
-            margin: 20px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.5);
+            margin: 15px 0;
+            text-shadow: 0 0 8px rgba(255,255,255,0.5);
             font-weight: 700;
             position: relative;
             overflow: hidden;
+            /* Larger touch target */
+            min-width: 200px;
         }
         .love-btn::before {
             content: '';
@@ -497,13 +496,13 @@
             left: 100%;
         }
         .love-btn:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(255, 20, 147, 0.7), 0 0 30px rgba(255, 105, 180, 0.8);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(255, 20, 147, 0.7);
         }
         .love-btn:active {
-            transform: translateY(-5px) scale(1.02);
+            transform: translateY(-2px) scale(1.01);
         }
-        /* Confession popup animation */
+        /* Confession popup - Full width on mobile */
         .confession {
             position: fixed;
             top: 50%;
@@ -511,44 +510,48 @@
             transform: translate(-50%, -50%) scale(0);
             background: rgba(255, 105, 180, 0.95);
             backdrop-filter: blur(15px);
-            padding: 40px 80px;
-            border-radius: 30px;
+            padding: 30px 20px;
+            border-radius: 20px;
             border: 2px solid #fff;
-            box-shadow: 0 0 80px rgba(255, 20, 147, 0.8);
+            box-shadow: 0 0 50px rgba(255, 20, 147, 0.8);
             z-index: 9999;
             opacity: 0;
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            width: 90%; /* Full width on mobile */
+            max-width: 400px;
         }
         .confession.show {
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
         }
         .confession h3 {
-            font-size: 2.5em;
+            font-size: 1.8em;
             color: #fff;
-            text-shadow: 0 0 20px rgba(255,255,255,0.8);
-            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255,255,255,0.8);
+            margin-bottom: 15px;
         }
         .confession p {
-            font-size: 1.4em;
+            font-size: 1.1em;
             color: #fff;
-            text-shadow: 0 0 10px rgba(255,255,255,0.6);
+            text-shadow: 0 0 8px rgba(255,255,255,0.6);
+            margin-bottom: 10px;
         }
+        /* Close button - Larger touch target */
         .close-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             background: #fff;
             border: none;
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            font-size: 1.2em;
+            font-size: 1.1em;
             color: #ff1493;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(255,255,255,0.8);
+            box-shadow: 0 0 10px rgba(255,255,255,0.8);
         }
-        /* Enhanced fireworks effect */
+        /* Fireworks - Mobile optimized */
         .fireworks {
             position: fixed;
             top: 0;
@@ -559,7 +562,6 @@
             z-index: 1000;
             display: none;
         }
-        /* Firework trail */
         .firework-trail {
             position: absolute;
             width: 2px;
@@ -574,18 +576,19 @@
                 opacity: 1;
             }
             100% { 
-                height: 150px; 
+                height: 120px; /* Shorter for mobile */
                 transform: translateY(calc(var(--y) * 1px)); 
                 opacity: 0;
             }
         }
-        /* Firework particles - different shapes */
         .firework-particle {
             position: absolute;
             pointer-events: none;
             border-radius: 50%;
             animation: explode 1.8s ease-out forwards;
-            box-shadow: 0 0 12px currentColor;
+            box-shadow: 0 0 10px currentColor;
+            width: 4px; /* Smaller for mobile */
+            height: 4px;
         }
         .firework-particle.heart {
             clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
@@ -602,88 +605,93 @@
                 opacity: 1;
             }
             100% { 
-                transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(1.2); 
+                transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(1); 
                 opacity: 0;
             }
         }
-        /* Music control button */
+        /* Music control button - Fixed for mobile (easier to reach) */
         .music-control {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
+            bottom: 20px;
+            right: 20px;
+            width: 60px; /* Larger touch target */
             height: 60px;
             border-radius: 50%;
             background: linear-gradient(45deg, #ff1493, #ff69b4);
             border: none;
             color: white;
-            font-size: 1.5em;
+            font-size: 1.3em;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 25px rgba(255, 20, 147, 0.7);
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.7);
             cursor: pointer;
             z-index: 999;
             transition: all 0.3s ease;
         }
         .music-control:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 35px rgba(255, 20, 147, 0.9);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 20, 147, 0.9);
         }
-        /* Footer styles */
+
+        /* Footer - Mobile optimized */
         .footer {
             position: relative;
-            margin-top: 80px;
-            padding: 60px 20px 40px;
+            margin-top: 40px;
+            padding: 40px 15px 20px;
             text-align: center;
             background: rgba(29, 15, 70, 0.7);
             backdrop-filter: blur(15px);
-            border-radius: 30px 30px 0 0;
+            border-radius: 20px 20px 0 0;
             border-top: 1px solid rgba(255, 105, 180, 0.4);
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 -8px 20px rgba(0,0,0,0.3);
         }
-        /* Typewriter effect container */
+        /* Typewriter effect */
         .typewriter-container {
-            font-size: 1.4em;
-            margin-bottom: 40px;
-            padding: 20px;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            padding: 15px;
             background: rgba(255, 105, 180, 0.1);
-            border-radius: 20px;
+            border-radius: 15px;
             border: 1px solid rgba(255, 105, 180, 0.2);
-            min-height: 80px;
+            min-height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.2);
         }
         .typewriter-text {
             color: #ff9ff3;
-            text-shadow: 0 0 15px rgba(255, 159, 243, 0.7);
+            text-shadow: 0 0 10px rgba(255, 159, 243, 0.7);
             border-right: 2px solid #ff69b4;
-            padding-right: 8px;
+            padding-right: 6px;
             animation: blink 1s infinite;
         }
         @keyframes blink {
             0%, 100% { border-color: transparent; }
             50% { border-color: #ff69b4; }
         }
-        /* Blessings tags */
+        /* Blessings tags - Wrap nicely on mobile */
         .blessings {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            margin: 40px 0;
+            gap: 10px; /* Smaller gap */
+            margin: 25px 0;
+            padding: 0 10px;
         }
         .blessing-item {
             background: linear-gradient(45deg, rgba(255, 20, 147, 0.2), rgba(255, 105, 180, 0.2));
-            padding: 15px 25px;
+            padding: 10px 20px;
             border-radius: 50px;
             border: 1px solid rgba(255, 105, 180, 0.3);
-            font-size: 1.2em;
+            font-size: 0.9em;
             color: #ffd1dc;
-            text-shadow: 0 0 10px rgba(255,255,255,0.4);
+            text-shadow: 0 0 8px rgba(255,255,255,0.4);
             animation: floatUp 6s infinite ease-in-out;
+            /* Smaller for mobile */
+            max-width: 120px;
+            text-align: center;
         }
         .blessing-item:nth-child(2n) {
             animation-delay: 1s;
@@ -693,99 +701,74 @@
         }
         @keyframes floatUp {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
         }
         /* Signature section */
         .signature {
-            margin-top: 50px;
-            padding-top: 30px;
+            margin-top: 30px;
+            padding-top: 20px;
             border-top: 1px dashed rgba(255, 105, 180, 0.3);
         }
         .signature h3 {
-            font-size: 1.8em;
+            font-size: 1.4em;
             background: linear-gradient(45deg, #ff69b4, #ff9ff3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .signature p {
-            font-size: 1.2em;
+            font-size: 1em;
             opacity: 0.9;
             margin-bottom: 5px;
         }
         .signature .date {
-            font-size: 1em;
+            font-size: 0.9em;
             opacity: 0.7;
-            margin-top: 10px;
+            margin-top: 8px;
             color: #ffd1dc;
         }
-        /* Footer heart decorations */
+        /* Footer hearts */
         .footer-hearts {
             position: absolute;
-            top: -20px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
         .footer-heart {
-            font-size: 24px;
+            font-size: 20px;
             color: #ff69b4;
-            text-shadow: 0 0 15px #ff1493;
+            text-shadow: 0 0 10px #ff1493;
             animation: bounce 2s infinite;
         }
         .footer-heart:nth-child(1) { animation-delay: 0s; }
         .footer-heart:nth-child(2) { animation-delay: 0.3s; }
         .footer-heart:nth-child(3) { animation-delay: 0.6s; }
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3em; }
-            .cake { font-size: 4em; }
-            .story h2, .promise h2 { font-size: 2.2em; }
-            .love-btn { padding: 20px 40px; font-size: 1.4em; }
-            .confession { padding: 30px 40px; }
-            .confession h3 { font-size: 2em; }
-            .music-control { width: 50px; height: 50px; font-size: 1.2em; }
-            .typewriter-container { font-size: 1.2em; }
-            .blessing-item { font-size: 1em; padding: 12px 20px; }
-            .signature h3 { font-size: 1.5em; }
-            
-            /* Responsive carousel */
-            .carousel-container {
-                max-width: 90%;
+
+        /* Extra small screens (iPhone SE, Galaxy A10) */
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.8em;
             }
-            .carousel-wrapper {
-                height: 450px;
+            .cake {
+                font-size: 2.5em;
+            }
+            .love-btn {
+                padding: 15px 25px;
+                font-size: 1.1em;
+                min-width: 180px;
             }
             .carousel-btn {
                 width: 45px;
                 height: 45px;
-                font-size: 1.2em;
+                font-size: 1em;
             }
-            .carousel-caption {
-                font-size: 1.1em;
-                bottom: 15px;
+            .confession h3 {
+                font-size: 1.6em;
             }
-            .carousel-indicators {
-                margin: 15px auto 0;
-                padding: 6px 12px;
-            }
-            .indicator-dot {
-                width: 10px;
-                height: 10px;
-            }
-
-            /* Responsive video */
-            .video-container {
-                width: 95%;
-            }
-            .video-cover-overlay i {
-                font-size: 4em;
-            }
-
-            /* Responsive headings */
-            .photo-frame-section h2, .music-theme-section h2 {
-                font-size: 2em;
+            .confession p {
+                font-size: 1em;
             }
         }
     </style>
@@ -824,9 +807,9 @@
             <div class="photo-frame-section">
                 <h2>💖 小萌的专属回忆 💖</h2>
                 <!-- Carousel container -->
-                <div class="carousel-container">
+                <div class="carousel-container" id="carousel">
                     <!-- Carousel content wrapper -->
-                    <div class="carousel-wrapper">
+                    <div class="carousel-wrapper" id="carouselWrapper">
                         <div class="carousel-slide" id="carouselSlide">
                             <!-- Initial photo -->
                             <img src="pic5.jpeg" alt="Xiao Meng's cute moment" class="carousel-photo">
@@ -869,7 +852,7 @@
                     </div>
                 </div>
                 
-                <p style="color: #ff9ff3; font-size: 1.1em; margin-top: 20px;">🎥 愿这个视频承载我们的美好回忆 🎥</p>
+                <p style="color: #ff9ff3; font-size: 1em; margin-top: 15px;">🎥 愿这个视频承载我们的美好回忆 🎥</p>
             </div>
         </section>
 
@@ -880,7 +863,7 @@
             <button class="love-btn" onclick="showFireworks()">
                 <i class="fas fa-heart"></i> 我爱你，永远！
             </button>
-            <p style="margin-top: 25px; font-size: 1.3em;">点击按钮，释放浪漫烟花 🎆</p>
+            <p style="margin-top: 20px; font-size: 1.1em;">点击按钮，释放浪漫烟花 🎆</p>
         </section>
 
         <!-- Footer section -->
@@ -944,6 +927,9 @@
         let currentIndex = 0;
         let noteInterval = null;
         let autoPlay = null;
+        // Touch variables for carousel
+        let touchStartX = 0;
+        let touchEndX = 0;
 
         // Photo data for Xiao Meng (8 photos)
         const photoData = [
@@ -992,7 +978,7 @@
         // Generate twinkling stars
         function createStars() {
             const starsContainer = document.getElementById('stars');
-            const starCount = window.innerWidth > 768 ? 200 : 100;
+            const starCount = window.innerWidth > 768 ? 200 : 150; // Fewer stars on mobile
             
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
@@ -1000,7 +986,7 @@
                 star.style.left = `${Math.random() * 100}vw`;
                 star.style.top = `${Math.random() * 100}vh`;
                 star.style.animationDelay = `${Math.random() * 3}s`;
-                star.style.width = `${Math.random() * 3 + 1}px`;
+                star.style.width = `${Math.random() * 2 + 1}px`;
                 star.style.height = star.style.width;
                 starsContainer.appendChild(star);
             }
@@ -1013,7 +999,7 @@
             heart.innerHTML = ['💖', '💕', '💗', '💝'][Math.floor(Math.random() * 4)];
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
-            heart.style.fontSize = (Math.random() * 10 + 18) + 'px';
+            heart.style.fontSize = (Math.random() * 8 + 12) + 'px';
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 9000);
         }
@@ -1024,26 +1010,11 @@
             petal.className = 'petal';
             petal.style.left = Math.random() * 100 + 'vw';
             petal.style.animationDuration = (Math.random() * 6 + 8) + 's';
-            petal.style.width = (Math.random() * 15 + 8) + 'px';
+            petal.style.width = (Math.random() * 8 + 6) + 'px';
             petal.style.height = petal.style.width;
             petal.style.animationDelay = Math.random() * 5 + 's';
             document.body.appendChild(petal);
             setTimeout(() => petal.remove(), 12000);
-        }
-
-        // Initialize mouse-following heart effect
-        function initFollowHeart() {
-            document.addEventListener('mousemove', (e) => {
-                if (Math.random() > 0.7) {
-                    const heart = document.createElement('div');
-                    heart.className = 'follow-heart';
-                    heart.innerHTML = ['💓', '💘', '💝'][Math.floor(Math.random() * 3)];
-                    heart.style.left = e.clientX + 'px';
-                    heart.style.top = e.clientY + 'px';
-                    document.body.appendChild(heart);
-                    setTimeout(() => heart.remove(), 1000);
-                }
-            });
         }
 
         // Enhanced fireworks effect
@@ -1063,12 +1034,15 @@
                 ['#00ffff', '#00bfff', '#1e90ff']  // Blue series
             ];
 
+            // Fewer fireworks on mobile
+            const fireworkCount = window.innerWidth > 768 ? 15 : 10;
+
             // Create multiple fireworks
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < fireworkCount; i++) {
                 setTimeout(() => {
-                    // Random position
-                    const x = Math.random() * window.innerWidth;
-                    const y = Math.random() * window.innerHeight * 0.6;
+                    // Random position (centered for mobile)
+                    const x = Math.random() * (window.innerWidth - 40) + 20;
+                    const y = Math.random() * (window.innerHeight * 0.6);
                     
                     // Create firework trail
                     const trail = document.createElement('div');
@@ -1081,16 +1055,16 @@
                     // Explosion effect (after trail animation)
                     setTimeout(() => {
                         const colors = colorSets[Math.floor(Math.random() * colorSets.length)];
-                        const particleCount = 80 + Math.floor(Math.random() * 40);
+                        const particleCount = window.innerWidth > 768 ? 80 : 60; // Fewer particles on mobile
                         const shapes = ['', 'heart', 'star'];
                         
                         for (let j = 0; j < particleCount; j++) {
                             const particle = document.createElement('div');
                             particle.className = `firework-particle ${shapes[Math.floor(Math.random() * shapes.length)]}`;
                             
-                            // Random angle and distance
+                            // Random angle and distance (smaller for mobile)
                             const angle = Math.random() * Math.PI * 2;
-                            const distance = 80 + Math.random() * 120;
+                            const distance = window.innerWidth > 768 ? (80 + Math.random() * 120) : (60 + Math.random() * 80);
                             const dx = Math.cos(angle) * distance;
                             const dy = Math.sin(angle) * distance;
                             
@@ -1099,7 +1073,7 @@
                             particle.style.top = y + 'px';
                             particle.style.setProperty('--x', dx);
                             particle.style.setProperty('--y', dy);
-                            particle.style.width = (Math.random() * 6 + 3) + 'px';
+                            particle.style.width = (Math.random() * 4 + 2) + 'px';
                             particle.style.height = particle.style.width;
                             particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                             particle.style.color = particle.style.backgroundColor;
@@ -1137,7 +1111,7 @@
                 } else {
                     // Try to play music (handle browser autoplay restrictions)
                     music.play().catch(() => {
-                        alert('Please allow audio playback permissions and click the music button again 💖');
+                        alert('请允许音频播放权限，再点击音乐按钮 💖');
                     });
                     musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 }
@@ -1213,11 +1187,13 @@
             });
         }
 
-        // Bind carousel button events
+        // Bind carousel button events + touch swipe
         function bindCarouselEvents() {
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
+            const carousel = document.getElementById('carousel');
             
+            // Next/Prev button clicks
             if (prevBtn) {
                 prevBtn.addEventListener('click', () => {
                     currentIndex = (currentIndex - 1 + photoData.length) % photoData.length;
@@ -1232,13 +1208,47 @@
                 });
             }
 
-            // Auto-play carousel
+            // Touch swipe functionality (mobile)
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                // Pause autoplay on touch
+                clearInterval(autoPlay);
+            });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                // Resume autoplay after touch
+                autoPlay = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % photoData.length;
+                    updateCarousel();
+                }, 3000);
+            });
+
+            // Handle swipe direction
+            function handleSwipe() {
+                const swipeThreshold = 50; // Minimum swipe distance
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (swipeDistance > swipeThreshold) {
+                    // Swipe right → prev photo
+                    currentIndex = (currentIndex - 1 + photoData.length) % photoData.length;
+                    updateCarousel();
+                } else if (swipeDistance < -swipeThreshold) {
+                    // Swipe left → next photo
+                    currentIndex = (currentIndex + 1) % photoData.length;
+                    updateCarousel();
+                }
+            }
+
+            // Auto-play carousel (slower on mobile)
+            const autoPlaySpeed = window.innerWidth > 768 ? 3000 : 4000;
             autoPlay = setInterval(() => {
                 currentIndex = (currentIndex + 1) % photoData.length;
                 updateCarousel();
-            }, 3000);
+            }, autoPlaySpeed);
 
-            // Pause auto-play on mouse enter
+            // Pause auto-play on mouse enter (desktop) / touch (mobile)
             const carouselSlide = document.getElementById('carouselSlide');
             if (carouselSlide) {
                 carouselSlide.parentElement.addEventListener('mouseenter', () => {
@@ -1249,7 +1259,7 @@
                     autoPlay = setInterval(() => {
                         currentIndex = (currentIndex + 1) % photoData.length;
                         updateCarousel();
-                    }, 3000);
+                    }, autoPlaySpeed);
                 });
             }
         }
@@ -1265,7 +1275,7 @@
 
             // Video load error handling
             themeVideo.addEventListener('error', () => {
-                alert('Video loading failed! Please check if the video file exists and is in MP4 format');
+                alert('视频加载失败！请检查视频文件是否存在且格式为MP4');
             });
 
             // Play video on cover click
@@ -1274,11 +1284,11 @@
                     videoCoverOverlay.classList.add('hidden');
                 }).catch(err => {
                     console.log('Video playback failed: ', err);
-                    alert('Please click the play button inside the video player to start playback (browser autoplay restriction)');
+                    alert('请点击视频内的播放按钮开始播放（浏览器自动播放限制）');
                 });
             });
 
-            // Generate video music notes
+            // Generate video music notes (fewer on mobile)
             function createNote() {
                 if (themeVideo.paused) return;
                 
@@ -1288,7 +1298,7 @@
                 note.style.left = `${Math.random() * 90 + 5}%`;
                 note.style.bottom = '0';
                 note.style.animationDelay = `${Math.random() * 2}s`;
-                note.style.fontSize = `${Math.random() * 15 + 15}px`;
+                note.style.fontSize = `${Math.random() * 10 + 10}px`;
                 
                 musicNotes.appendChild(note);
                 setTimeout(() => note.remove(), 4000);
@@ -1297,13 +1307,15 @@
             // Video play event
             themeVideo.addEventListener('play', () => {
                 videoCoverOverlay.classList.add('hidden');
-                // Initial 5 notes
-                for (let i = 0; i < 5; i++) {
+                // Fewer initial notes on mobile
+                const initialNotes = window.innerWidth > 768 ? 5 : 3;
+                for (let i = 0; i < initialNotes; i++) {
                     setTimeout(createNote, i * 300);
                 }
-                // Continuous note generation
+                // Slower note generation on mobile
+                const noteSpeed = window.innerWidth > 768 ? 500 : 700;
                 if (noteInterval) clearInterval(noteInterval);
-                noteInterval = setInterval(createNote, 500);
+                noteInterval = setInterval(createNote, noteSpeed);
             });
 
             // Video pause event
@@ -1320,12 +1332,13 @@
 
         // Initialize all functions on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Basic effects
+            // Basic effects (slower on mobile)
             createStars();
-            setInterval(createHeart, 200);
-            setInterval(createPetal, 500);
-            initFollowHeart();
-            initMusic(); // Background music initialization (button only)
+            const heartInterval = window.innerWidth > 768 ? 200 : 300;
+            const petalInterval = window.innerWidth > 768 ? 500 : 600;
+            setInterval(createHeart, heartInterval);
+            setInterval(createPetal, petalInterval);
+            initMusic(); 
             initTypewriter();
             
             // Carousel initialization
@@ -1333,7 +1346,7 @@
             updateCarousel();
             bindCarouselEvents();
             
-            // Video initialization (independent)
+            // Video initialization
             initVideoPlayer();
         });
 
